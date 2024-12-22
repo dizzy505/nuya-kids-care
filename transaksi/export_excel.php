@@ -1,5 +1,4 @@
 <?php
-// Create a new file called export_excel.php in the same directory
 session_start();
 require_once '../db.php';
 
@@ -8,7 +7,6 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-// Set headers for Excel download
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="presensi_karyawan.xls"');
 header('Cache-Control: max-age=0');
@@ -19,7 +17,6 @@ $stmt = $pdo->query("SELECT karyawan.id, karyawan.nama, presensi.tanggal, presen
                      LEFT JOIN presensi ON karyawan.id = presensi.karyawan_id");
 $data = $stmt->fetchAll();
 
-// Create Excel content
 echo "
 <table border='1'>
     <tr>
