@@ -91,6 +91,11 @@ $getanak_list = $anak_st->fetchAll();
                 <th class="border py-2 px-4 text-left">Durasi Kerja</th>
             </tr>
         </thead>
+        <div class="mb-4">
+            <a href="export_excel_anak.php" class="bg-yellow-500 text-white px-4 py-2 rounded inline-block">
+                Download Data
+            </a>
+        </div>
         <tbody class="text-gray-700">
             <?php foreach ($anak_list as $anak): ?>
                 <tr>
