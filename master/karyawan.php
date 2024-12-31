@@ -160,6 +160,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <!-- End Form Tambah Karyawan -->
         <?php endif; ?>
         </section>
+        <!-- Tombol Download -->
+        <div class="mb-4">
+            <a href="../transaksi/export_excel.php" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded inline-block">
+                Download Data Presensi
+            </a>
+        </div>
         <!-- Tampilkan daftar karyawan -->
         <h2 class="text-xl font-bold my-4">Daftar Karyawan</h2>
         <table class="min-w-full bg-white border-collapse border border-gray-200 shadow-md rounded-lg overflow-hidden">

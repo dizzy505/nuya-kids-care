@@ -3,7 +3,7 @@
         <div class="flex justify-between items-center">
             <div class="flex space-x-4">
                 <div>
-                    <a href="../index.php" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                    <a href="../index.php" class="flex items-center py-5 px-2 text-blue-500 hover:text-gray-900">
                         <span class="font-bold">NUYA KIDS CARE</span>
                     </a>
                 </div>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="flex items-center">
-                <a href="logout.php" class="py-5 px-3 text-gray-700 hover:text-gray-900">Logout</a>
+                <a href="../logout.php" class="py-5 px-3 text-red-500 hover:text-gray-900">Logout</a>
             </div>
         </div>
     </div>

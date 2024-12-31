@@ -189,6 +189,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- End Form Tambah Anak -->
     <?php endif; ?>
 <section class="hero py-12">
+    <!-- Tombol Download -->
+    <div class="mb-4">
+            <a href="../transaksi/export_excel_anak.php" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded inline-block">
+                Download Data Presensi
+            </a>
+        </div>
     <!-- Tampilkan daftar anak -->
     <h2 class="text-xl font-bold my-4">Daftar Anak</h2>
     <table class="min-w-full bg-white border-collapse border border-gray-200 shadow-md rounded-lg overflow-hidden">
@@ -215,18 +221,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <td class="border border-gray-200 px-4 py-2"><?php echo $anak['pengasuh']; ?></td>
                 <td class="border border-gray-200 px-4 py-2">
                         <!-- Tombol Edit -->
-                        <form method="POST" action="anak.php" class="inline">
+                        <form method="POST" action="anak.php">
                             <input type="hidden" name="action" value="edit_form">
                             <input type="hidden" name="id" value="<?php echo $anak['id']; ?>">
                             <button type="submit" class="text-blue-500 hover:text-blue-700">Edit</button>
                         </form>
+                        
                         <!-- Tombol Delete -->
-                        <form method="POST" action="anak.php" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data karyawan ini?');">
+                        <form method="POST" action="anak.php" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data karyawan ini?');">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="id" value="<?php echo $anak['id']; ?>">
                             <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Delete</button>
                         </form>
-                    </td>
+                </td>
             </tr>
         <?php endforeach; ?>
         </tbody>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 12, 2024 at 07:23 PM
+-- Generation Time: Dec 22, 2024 at 04:49 PM
 -- Server version: 8.0.40
 -- PHP Version: 8.3.14
 
@@ -41,7 +41,8 @@ CREATE TABLE `anak` (
 
 INSERT INTO `anak` (`id`, `nama`, `umur`, `pengasuh`, `kategori`) VALUES
 (1, 'naya', 1, 'Imron Fahroji', 'toddler'),
-(2, 'yaya', 3, 'Mayang Andini', 'bayi');
+(2, 'yaya', 3, 'Mayang Andini', 'bayi'),
+(5, 'icad', 5, 'Mayang Andini', 'Playgroup');
 
 -- --------------------------------------------------------
 
@@ -107,6 +108,30 @@ INSERT INTO `presensi` (`id`, `karyawan_id`, `tanggal`, `jam_masuk`, `jam_pulang
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `presensi_anak`
+--
+
+CREATE TABLE `presensi_anak` (
+  `id` int NOT NULL,
+  `anak_id` int NOT NULL,
+  `tanggal` date NOT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `jam_pulang` time DEFAULT NULL,
+  `durasi_belajar` time GENERATED ALWAYS AS (timediff(`jam_pulang`,`jam_masuk`)) STORED
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `presensi_anak`
+--
+
+INSERT INTO `presensi_anak` (`id`, `anak_id`, `tanggal`, `jam_masuk`, `jam_pulang`) VALUES
+(1, 1, '2024-12-22', '10:05:11', '10:05:21'),
+(2, 2, '2024-12-22', '10:05:16', '10:05:26'),
+(3, 5, '2024-12-22', '10:05:29', '10:06:42');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -155,6 +180,13 @@ ALTER TABLE `presensi`
   ADD KEY `karyawan_id` (`karyawan_id`);
 
 --
+-- Indexes for table `presensi_anak`
+--
+ALTER TABLE `presensi_anak`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `anak_id` (`anak_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -168,7 +200,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `anak`
 --
 ALTER TABLE `anak`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
@@ -181,6 +213,12 @@ ALTER TABLE `karyawan`
 --
 ALTER TABLE `presensi`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT for table `presensi_anak`
+--
+ALTER TABLE `presensi_anak`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -197,6 +235,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `presensi`
   ADD CONSTRAINT `presensi_ibfk_1` FOREIGN KEY (`karyawan_id`) REFERENCES `karyawan` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `presensi_anak`
+--
+ALTER TABLE `presensi_anak`
+  ADD CONSTRAINT `presensi_anak_ibfk_1` FOREIGN KEY (`anak_id`) REFERENCES `anak` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
